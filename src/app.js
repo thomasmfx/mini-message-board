@@ -1,6 +1,8 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('node:path')
+const db = require('./config/db')
+const utils = require('./utils/utils')
 
 const app = express();
 
