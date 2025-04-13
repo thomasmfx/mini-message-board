@@ -12,14 +12,14 @@
                     const randomMargin = Math.floor(Math.random()*800);
                     const randomRotate = Math.floor(Math.random()*100);
 
-                    messageElement[i].style.margin = randomMargin/10 + "px";
+                    messageElement[i].style.margin = (randomMargin/10) + "px";
 
                     let translate = randomMargin >= 400
                         ? 'translate(10%, 15%)'
                         : 'translate(15%, 10%)';
                     let rotate = randomRotate >= 50
                         ? `rotate(5deg)`
-                        : `rotate(-10deg)`;
+                        : `rotate(-5deg)`;
 
                     messageElement[i].style.transform = translate;
 
