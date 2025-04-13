@@ -16,7 +16,11 @@ app.use(express.static(assetsPath));
 
 // App
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', {
+    messages: db.messages,
+    displayDateFormatted: utils.displayDateFormatted,
+    messageAnimations: utils.messageAnimations
+  })
 })
 
 const PORT = process.env.PORT || 4000;

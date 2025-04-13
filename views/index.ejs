@@ -1,9 +1,64 @@
 <html lang="en">
     <head>
-        <title>Mini Message Board</title>
-        <link rel="stylesheet" type="text/css" href="/styles.css">
+        <title>message</title>
+        <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
+        <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+        <script>
+            window.addEventListener("DOMContentLoaded", function randomize() {
+                let messageElement = document.querySelectorAll(".message");
+
+                for(let i = 0 ;i < (<%= messages.length %>);i++) {
+                    const randomMargin = Math.floor(Math.random()*800);
+                    const randomRotate = Math.floor(Math.random()*100);
+
+                    messageElement[i].style.margin = randomMargin/10 + "px";
+
+                    let translate = randomMargin >= 400
+                        ? 'translate(10%, 15%)'
+                        : 'translate(15%, 10%)';
+                    let rotate = randomRotate >= 50
+                        ? `rotate(5deg)`
+                        : `rotate(-10deg)`;
+
+                    messageElement[i].style.transform = translate;
+
+                    messageElement[i].addEventListener('mouseover', () => {
+                        messageElement[i].style.transform = `${translate} scale(1.05) ${rotate}`;
+                    })
+
+                    messageElement[i].addEventListener('mouseout', () => {
+                        messageElement[i].style.transform = translate;
+                    })
+                }
+            });
+        </script>
     </head>
     <body>
-        <h1>App</h1>
+        <header class="header">
+            <button class="button">
+                message
+            </button>
+        </header>
+        <main class="main">
+            <div class="grid">
+                <% messages.map((message) => { %>
+                    <div class="message">
+                        <div class="message-user">
+                            <%= message.user %>
+                        </div>
+                        <div class="message-added-date">
+                            <%= displayDateFormatted(message.added) %>
+                        </div>
+                        <div class="message-text">
+                            <%= message.text %>
+                        </div>
+                        <div class="message-fold"></div>
+                        <div class="message-fold-cover"></div>
+                        <div class="message-fold-stripe"></div>
+                    </div>
+                <% }) %>
+            </div>
+        </main>
     </body>
 </html>

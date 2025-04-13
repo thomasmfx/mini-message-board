@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+/* || Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* || Reset */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -29,3 +32,92 @@ input, button, textarea, select {
 }
 
 /* || Styles */
+body {
+    font-family: 'Montserrat', serif;
+    height: 100vh;
+}
+
+/* || Layouts */
+.header {
+    padding: 1em;
+    display: flex;
+    justify-content: flex-start;
+    padding-inline: 15em;
+}
+
+.main {
+    padding: 6em;
+    width: 100%;
+}
+
+/* || Elements */
+.button {
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, min-content);
+    grid-template-rows: auto;
+    gap: 2em;
+    justify-content: center;
+}
+
+.message {
+    width: 280px;
+    height: 280px;
+    border: 1px solid black;
+    padding: 1em;
+    background-color: white;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 50ms ease-in;
+}
+.message-user {
+    font-weight: 500;
+}
+.message-added-date {
+    font-size: .8rem;
+    opacity: .7;
+}
+.message-text {
+    margin-top: 1em;
+}
+.message-fold {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+.message-fold-cover {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 21px;
+    height: 21px;
+    background-color: white;
+}
+.message-fold-stripe {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 20px;
+    height: 20px;
+
+    background:
+            linear-gradient(to top right,
+            rgba(0,0,0,0) 0%,
+            rgba(0,0,0,0) calc(50% - 0.8px),
+            rgba(0,0,0,1) 50%,
+            rgba(0,0,0,0) calc(50% + 0.8px),
+            rgba(0,0,0,0) 100%);
+}
+
