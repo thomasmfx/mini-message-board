@@ -34,7 +34,9 @@ input, button, textarea, select {
 /* || Styles */
 body {
     font-family: 'Montserrat', serif;
-    height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* || Layouts */
@@ -46,8 +48,14 @@ body {
 }
 
 .main {
-    padding: 6em;
+    padding: 6em 0;
     width: 100%;
+    display: grid;
+    place-items: center;
+}
+
+.main.new {
+    flex: 1; /* Make main element take all remaining vertical space */
 }
 
 /* || Elements */
@@ -119,5 +127,48 @@ body {
             rgba(0,0,0,1) 50%,
             rgba(0,0,0,0) calc(50% + 0.8px),
             rgba(0,0,0,0) 100%);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    position: relative;
+}
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: .2em;
+}
+
+.label {
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.input {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #ced4da;
+    color: black;
+}
+
+.textarea {
+    height: 145px;
+    border: none;
+    outline: none;
+    resize: none;
+    border-bottom: 1px solid #ced4da;
+}
+
+.save-message-button {
+    border: none;
+    background: none;
+    width: 50px;
+    height: 80px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    transform: translate(190%, 130%);
 }
 

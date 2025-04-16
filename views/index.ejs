@@ -1,6 +1,6 @@
 <html lang="en">
     <head>
-        <title>message</title>
+        <title>messages</title>
         <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
         <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
@@ -35,11 +35,7 @@
         </script>
     </head>
     <body>
-        <header class="header">
-            <button class="button">
-                message
-            </button>
-        </header>
+        <%- include('partials/header', { navigateTo: '/newMessage' }) %>
         <main class="main">
             <div class="grid">
                 <% messages.map((message) => { %>

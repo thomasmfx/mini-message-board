@@ -1,0 +1,31 @@
+<html lang="en">
+    <head>
+        <title>new message</title>
+        <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
+        <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    </head>
+    <body>
+    <%- include('partials/header', { navigateTo: '/' }) %>
+    <main class="main new">
+        <div class="message new">
+            <form method="POST" action="/newMessage" class="form">
+                <div class="form-row">
+                    <label for="username" class="label">username</label>
+                    <input type="text" id="username" name="username" class="input" required>
+                </div>
+                <div class="form-row">
+                    <label for="message-text" class="label">message</label>
+                    <textarea id="message-text" name="messageText" class="textarea" maxlength="108" required></textarea>
+                </div>
+                <button type="submit" class="save-message-button">
+                    <img src="/assets/arrow.png" alt="">
+                </button>
+            </form>
+            <div class="message-fold"></div>
+            <div class="message-fold-cover"></div>
+            <div class="message-fold-stripe"></div>
+        </div>
+    </main>
+    </body>
+</html>
