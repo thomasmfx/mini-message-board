@@ -39,7 +39,7 @@
         <main class="main">
             <div class="grid">
                 <% messages.map((message) => { %>
-                    <div class="message">
+                    <button class="message">
                         <div class="message-user">
                             <%= message.user %>
                         </div>
@@ -52,7 +52,7 @@
                         <div class="message-fold"></div>
                         <div class="message-fold-cover"></div>
                         <div class="message-fold-stripe"></div>
-                    </div>
+                    </button>
                 <% }) %>
             </div>
         </main>

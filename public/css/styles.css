@@ -79,12 +79,13 @@ body {
     width: 280px;
     height: 280px;
     border: 1px solid black;
-    padding: 1em;
     background-color: white;
+    padding: 1em;
 
     position: relative;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-rows: repeat(3, min-content);
+    justify-items: start;
     transition: transform 50ms ease-in;
 }
 .message-user {
@@ -96,6 +97,7 @@ body {
 }
 .message-text {
     margin-top: 1em;
+    text-align: start;
 }
 .message-fold {
     position: absolute;
