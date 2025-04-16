@@ -10,7 +10,7 @@ app.use(express.static(assetsPath));
 
 app.use(express.urlencoded({ extended: true }));
 
-// App
+app.use('/message', routes.message);
 app.use('/newMessage', routes.newMessage);
 app.use('/', routes.index);
 

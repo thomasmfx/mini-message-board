@@ -52,11 +52,11 @@ body {
     width: 100%;
     display: grid;
     place-items: center;
+    flex: 1;
 }
 
 .main.new {
-    flex: 1; /* Make main element take all remaining vertical space */
-    overflow-x: hidden;
+    overflow-x: hidden; /* prevent overflow during 'animate-submit-exit' */
 }
 
 /* || Elements */
@@ -87,6 +87,9 @@ body {
     grid-template-rows: repeat(3, min-content);
     justify-items: start;
     transition: transform 50ms ease-in;
+}
+button.message {
+    cursor: pointer;
 }
 .message-user {
     font-weight: 500;
@@ -135,7 +138,7 @@ body {
 .form {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    gap: 1.5em;
     position: relative;
 }
 .form-row {
@@ -157,7 +160,7 @@ body {
 }
 
 .textarea {
-    height: 145px;
+    height: 130px;
     border: none;
     outline: none;
     resize: none;

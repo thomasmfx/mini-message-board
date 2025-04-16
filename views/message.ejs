@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>message</title>
+        <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
+        <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    </head>
+    <body>
+        <%- include('partials/header', { navigateTo: '/' }) %>
+        <main class="main">
+            <div class="grid">
+                <div class="message selected">
+                    <div class="message-user">
+                        <%= message.user %>
+                    </div>
+                    <div class="message-added-date">
+                        <%= message.added.toLocaleString() %>
+                    </div>
+                    <div class="message-text">
+                        <%= message.text %>
+                    </div>
+                    <div class="message-fold"></div>
+                    <div class="message-fold-cover"></div>
+                    <div class="message-fold-stripe"></div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

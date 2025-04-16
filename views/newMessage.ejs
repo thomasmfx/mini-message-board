@@ -7,9 +7,10 @@
     </head>
     <script>
         window.addEventListener('DOMContentLoaded', () => {
+            const form = document.querySelector(".form");
             const messageElement = document.querySelector(".message");
             const submitMessageBtn = document.querySelector(".submit-message-button");
-            const form = document.querySelector(".form");
+            const textarea = document.querySelector("#message-text");
 
             form.addEventListener("submit", () => {
               submitMessageBtn.classList.add("hide");
@@ -32,7 +33,7 @@
                 </div>
                 <div class="form-row">
                     <label for="message-text" class="label">message</label>
-                    <textarea id="message-text" name="messageText" class="textarea" maxlength="108" required></textarea>
+                    <textarea id="message-text" name="messageText" class="textarea" maxlength="150" required></textarea>
                 </div>
                 <button type="submit" class="submit-message-button">
                     <img src="/assets/arrow.png" alt="">
