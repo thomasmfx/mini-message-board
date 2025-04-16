@@ -56,6 +56,7 @@ body {
 
 .main.new {
     flex: 1; /* Make main element take all remaining vertical space */
+    overflow-x: hidden;
 }
 
 /* || Elements */
@@ -161,7 +162,7 @@ body {
     border-bottom: 1px solid #ced4da;
 }
 
-.save-message-button {
+.submit-message-button {
     border: none;
     background: none;
     width: 50px;
@@ -172,3 +173,19 @@ body {
     transform: translate(190%, 130%);
 }
 
+.animate-submit-exit {
+    animation: slide-right 1.5s ease-in-out;
+}
+
+@keyframes slide-right {
+    25% {
+        transform: translateX(-50%) rotate(-10deg);
+    }
+    100% {
+        transform: translateX(500%) rotate(10deg);
+    }
+}
+
+.hide {
+    display: none;
+}

@@ -18,7 +18,10 @@ newMessageRouter.post('/', (req, res) => {
   }
 
   db.messages.push(message)
-  res.redirect('/')
+
+  setTimeout(() => {
+    res.redirect('/')
+  }, (2000)) // animation ".animate-submit-exit" + 500 ms
 })
 
 module.exports = newMessageRouter
