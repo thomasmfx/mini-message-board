@@ -1,27 +1,18 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('node:path')
-const db = require('./config/db')
-const utils = require('./utils/utils')
+const routes = require('./routes/routes')
 
 const app = express();
 
-// View engine
-app.set('views', path.join('views'));
-app.set('view engine', 'ejs');
-
-// Styles
 const assetsPath = path.join('public');
 app.use(express.static(assetsPath));
 
+app.use(express.urlencoded({ extended: true }));
+
 // App
-app.get('/', (req, res) => {
-  res.render('index', {
-    messages: db.messages,
-    displayDateFormatted: utils.displayDateFormatted,
-    messageAnimations: utils.messageAnimations
-  })
-})
+app.use('/newMessage', routes.newMessage);
+app.use('/', routes.index);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
