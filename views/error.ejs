@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Error</title>
+        <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
+        <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    </head>
+    <body>
+    <div class="error-container">
+        <h1 class="error">Error <%= error.status %> | <%= error.message %></h1>
+        <form method="GET" action="/">
+            <button type="submit">Home</button>
+        </form>
+    </div>
+    </body>
+</html>
