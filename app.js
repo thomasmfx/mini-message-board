@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const path = require('node:path')
-const routes = require('./routes/routes')
+const messagesRouter = require('./routes/messagesRouter')
 
 const app = express();
 
@@ -12,10 +12,9 @@ app.set('views', path.join('views'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use('/message', routes.message);
-app.use('/newMessage', routes.newMessage);
-app.use('/', routes.index);
+app.use('/', messagesRouter);
 
 app.use((err, req, res, next) => {
   res.render('error', { error: err })

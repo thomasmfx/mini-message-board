@@ -37,17 +37,17 @@
         </script>
     </head>
     <body>
-        <%- include('partials/header', { navigateTo: '/newMessage' }) %>
+        <%- include('partials/header', { navigateTo: '/new' }) %>
         <main class="main">
             <div class="grid">
                 <% messages.map((message, index) => { %>
-                    <form method='GET' action='/message/<%= index %>'>
+                    <form method='GET' action='/<%= index %>'>
                         <button class="message" type="submit" data-id="<%= index %>">
                             <div class="message-user">
                                 <%= message.user %>
                             </div>
                             <div class="message-added-date">
-                                <%= displayDateFormatted(message.added) %>
+                                <%= dateFormatted(message.added) %>
                             </div>
                             <div class="message-text">
                                 <%= message.text %>

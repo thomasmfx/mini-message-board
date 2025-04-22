@@ -1,6 +1,6 @@
 const messages = [
   {
-    text: "Hi there! 👋 How can I help you today?",
+    text: "Hi there!",
     user: "Amando",
     added: new Date()
   },
@@ -20,7 +20,7 @@ const messages = [
     added: new Date()
   },
   {
-    text: "Thanks for the information!",
+    text: "This is cool!",
     user: "Amando",
     added: new Date()
   },

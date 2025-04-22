@@ -10,23 +10,40 @@
             const form = document.querySelector(".form");
             const messageElement = document.querySelector(".message");
             const submitMessageBtn = document.querySelector(".submit-message-button");
-            const textarea = document.querySelector("#message-text");
 
-            form.addEventListener("submit", () => {
-              submitMessageBtn.classList.add("hide");
-              messageElement.classList.add("animate-submit-exit");
+          form.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-              setTimeout(() => {
-                messageElement.classList.add("hide");
-              }, 1400); // animation "animate-submit-exit" duration - 100ms to prevent element flickering
-            })
+            const formData = new FormData(e.target);
+            const formObject = {};
+
+            formData.forEach((value, key) => {
+              formObject[key] = value;
+            });
+
+            submitMessageBtn.classList.add("hide");
+            messageElement.classList.add("animate-submit-exit");
+
+            await fetch('/new', {
+              method: 'POST',
+              body: JSON.stringify(formObject),
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+
+            setTimeout(() => {
+              messageElement.classList.add("hide");
+              window.location.href = '/';
+            }, 1400);
+          });
         })
     </script>
     <body>
     <%- include('partials/header', { navigateTo: '/' }) %>
     <main class="main new">
         <div class="message new">
-            <form method="POST" action="/newMessage" class="form">
+            <form class="form">
                 <div class="form-row">
                     <label for="username" class="label">username</label>
                     <input type="text" id="username" name="username" class="input" maxlength="25" autocomplete="off" required>
