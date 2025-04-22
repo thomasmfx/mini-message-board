@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 const { Client } = require('pg')
 const env = require('../config/env')
 
@@ -22,15 +24,29 @@ INSERT INTO messages (username, text, date) VALUES
   ('System', 'This is a test message.', CURRENT_TIMESTAMP);
 `
 
-async function main() {
-  console.log('seeding...');
+async function main(dbUrl) {
+  if (!dbUrl) {
+    throw new Error('Database URL not provided. Use: node db/populatedb.js <db-url>');
+  }
+
+  console.log('Connecting to database...');
   const client = new Client({
-    connectionString: `postgresql://${env.DB_USER}:${env.DB_PASSWORD}@${env.DB_HOST}:${env.DB_PORT}/${env.DB_NAME}`
+    connectionString: dbUrl,
+    ssl: dbUrl.includes('railway') ? { rejectUnauthorized: false } : false
   })
-  await client.connect()
-  await client.query(SQL)
-  await client.end()
-  console.log('done')
+
+  try {
+    await client.connect()
+    console.log('Populating database...')
+    await client.query(SQL)
+    console.log('Database populated with success!')
+  } catch(err) {
+    console.error('Error:', err.message)
+  } finally {
+    await client.end()
+    console.log('Done.')
+  }
 }
 
-main()
+const dbUrl = process.argv[2];
+main(dbUrl).catch(console.error);
