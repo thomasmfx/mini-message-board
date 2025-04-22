@@ -200,7 +200,7 @@ button.message {
 }
 
 .animate-submit-exit {
-    animation: slide-right 1.6s ease-in-out;
+    animation: slide-right 1.5s ease-in-out;
 }
 
 @keyframes slide-right {
@@ -241,5 +241,32 @@ button.message {
         background: none;
         border: none;
         cursor: pointer;
+    }
+}
+
+.message-new-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2em;
+
+    & > .message {
+        grid-column: 2;
+    }
+
+    & > .errors {
+        grid-column: 1;
+        max-width: 25ch;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 3em;
+
+        & > .error:nth-child(1) {
+            transform: rotate(-5deg);
+        }
+
+        & > .error:nth-child(2) {
+            transform: rotate(5deg);
+        }
     }
 }

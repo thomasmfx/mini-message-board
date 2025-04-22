@@ -12,54 +12,39 @@
             const messageElement = document.querySelector(".message");
             const submitMessageBtn = document.querySelector(".submit-message-button");
 
-          form.addEventListener("submit", async (e) => {
-            e.preventDefault();
+            form.addEventListener("submit", () => {
+                submitMessageBtn.classList.add("hide");
+                messageElement.classList.add("animate-submit-exit");
 
-            const formData = new FormData(e.target);
-            const formObject = {};
-
-            formData.forEach((value, key) => {
-              formObject[key] = value;
-            });
-
-            submitMessageBtn.classList.add("hide");
-            messageElement.classList.add("animate-submit-exit");
-
-            await fetch('/new', {
-              method: 'POST',
-              body: JSON.stringify(formObject),
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            });
-
-            setTimeout(() => {
-              messageElement.classList.add("hide");
-              window.location.href = '/';
-            }, 1400);
-          });
+                setTimeout(() => {
+                  messageElement.classList.add("hide"); // prevent flickering when redirecting
+                }, 1400)
+            })
         })
     </script>
     <body>
     <%- include('partials/header', { navigateTo: '/', btnText: 'messages' }) %>
     <main class="main new">
-        <div class="message new">
-            <form class="form">
-                <div class="form-row">
-                    <label for="username" class="label">username</label>
-                    <input type="text" id="username" name="username" class="input" maxlength="25" autocomplete="off" required>
-                </div>
-                <div class="form-row">
-                    <label for="message-text" class="label">message</label>
-                    <textarea id="message-text" name="messageText" class="textarea" maxlength="150" required></textarea>
-                </div>
-                <button type="submit" class="submit-message-button">
-                    <img src="/assets/arrow.png" alt="">
-                </button>
-            </form>
-            <div class="message-fold"></div>
-            <div class="message-fold-cover"></div>
-            <div class="message-fold-stripe"></div>
+        <div class="message-new-container">
+            <%- include("partials/errors.ejs") %>
+            <div class="message">
+                <form method="POST" action="/new" class="form">
+                    <div class="form-row">
+                        <label for="username" class="label">username</label>
+                        <input type="text" id="username" name="username" class="input" minlength="3" maxlength="25" autocomplete="off" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="message-text" class="label">message</label>
+                        <textarea id="message-text" name="messageText" class="textarea" minlength="1" maxlength="150" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-message-button">
+                        <img src="/assets/arrow.png" alt="">
+                    </button>
+                </form>
+                <div class="message-fold"></div>
+                <div class="message-fold-cover"></div>
+                <div class="message-fold-stripe"></div>
+            </div>
         </div>
     </main>
     </body>
