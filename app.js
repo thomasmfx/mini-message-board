@@ -23,5 +23,6 @@ app.use((err, req, res, next) => {
 
 const PORT = env.PORT || 3000;
 app.listen(PORT, () => {
+  console.log(`Database URL: ${env.DATABASE_URL}`)
   console.log(`Application running - Listening on http://localhost:${PORT}`)
 })

@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
 const env = require('../config/env');
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = env.DATABASE_URL;
 
 module.exports = new Pool({
   connectionString,
