@@ -1,5 +1,6 @@
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width">
         <title>messages</title>
         <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
         <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
@@ -7,6 +8,11 @@
         <script>
             window.addEventListener("DOMContentLoaded", function randomize() {
                 let messageElement = document.querySelectorAll(".message");
+                let screenWidth = window.innerWidth;
+
+                window.addEventListener("resize", function() {
+                  screenWidth = window.innerWidth;
+                })
 
                 for(let i = 0 ;i < (<%= messages.length %>);i++) {
                     const randomMargin = Math.floor(Math.random()*800);
@@ -14,30 +20,38 @@
                     const randomX = Math.floor(Math.random()*20);
                     const randomY = Math.floor(Math.random()*20);
 
-                    messageElement[i].style.margin = (randomMargin/10) + "px";
-
                     let translate = randomMargin >= 400
                         ? `translate(${randomX}%, ${randomY}%)`
                         : `translate(${randomY}%, ${randomX}%)`;
+
                     let rotate = randomRotate >= 50
                         ? `rotate(5deg)`
                         : `rotate(-5deg)`;
 
-                    messageElement[i].style.transform = translate;
-
-                    messageElement[i].addEventListener('mouseover', () => {
-                        messageElement[i].style.transform = `${translate} scale(1.05) ${rotate}`;
-                    })
-
-                    messageElement[i].addEventListener('mouseout', () => {
+                    if (screenWidth > 1024) {
+                        messageElement[i].style.margin = (randomMargin/10) + "px";
                         messageElement[i].style.transform = translate;
-                    })
+
+                        messageElement[i].addEventListener('mouseover', () => {
+                          messageElement[i].style.transform = `${translate} scale(1.05) ${rotate}`;
+                        })
+                        messageElement[i].addEventListener('mouseout', () => {
+                          messageElement[i].style.transform = translate;
+                        })
+                    } else {
+                      messageElement[i].addEventListener('mouseover', () => {
+                        messageElement[i].style.transform = `scale(1.05) ${rotate}`;
+                      })
+                      messageElement[i].addEventListener('mouseout', () => {
+                        messageElement[i].style.transform = `scale(1) rotate(0deg`
+                      })
+                    }
                 }
             });
         </script>
     </head>
     <body>
-        <%- include('partials/header', { navigateTo: '/new' }) %>
+        <%- include('partials/header', { navigateTo: '/new', btnText: 'new message' }) %>
         <main class="main">
             <div class="grid">
                 <% messages.map((message) => { %>

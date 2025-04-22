@@ -1,5 +1,6 @@
 <html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width">
         <title>new message</title>
         <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
         <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
@@ -40,7 +41,7 @@
         })
     </script>
     <body>
-    <%- include('partials/header', { navigateTo: '/' }) %>
+    <%- include('partials/header', { navigateTo: '/', btnText: 'messages' }) %>
     <main class="main new">
         <div class="message new">
             <form class="form">

@@ -1,12 +1,13 @@
 <html>
     <head>
+        <meta name="viewport" content="width=device-width">
         <title><%= message.username || 'message' %></title>
         <link href="/assets/favicon/light-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: light)">
         <link href="/assets/favicon/dark-mode-favicon.svg" rel="icon" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" type="text/css" href="/css/styles.css">
     </head>
     <body>
-        <%- include('partials/header', { navigateTo: '/' }) %>
+        <%- include('partials/header', { navigateTo: '/', btnText: 'messages' }) %>
         <main class="main">
             <div class="grid">
                 <div class="message selected">
