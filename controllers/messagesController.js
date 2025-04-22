@@ -1,8 +1,8 @@
-const db = require('../config/db')
+const db = require('../db/queries')
 const utils = require('../utils/date')
 
 const messagesListGet = async (req, res) => {
-  const messages = db.messages
+  const messages = await db.getAllMessages()
 
   res.render('index', {
     messages: messages,
@@ -12,7 +12,9 @@ const messagesListGet = async (req, res) => {
 
 const messagesGet = async (req, res, next) => {
   const { messageId } = req.params;
-  const message = db.messages[messageId];
+  const message = await db.getMessageById(messageId)
+
+  console.log(message)
 
   if (!message) {
     const error = new Error();
@@ -22,7 +24,7 @@ const messagesGet = async (req, res, next) => {
   }
 
   res.render('message', {
-    message: message,
+    message: message[0],
   })
 }
 
@@ -32,17 +34,13 @@ const messagesNewGet = async (req, res) => {
 
 const messagesNewPost = async (req, res) => {
   const message = {
-    user: req.body.username,
-    text: req.body.messageText,
-    added: new Date()
+    username: req.body.username,
+    text: req.body.messageText
   }
 
-  db.messages.push(message)
+  await db.insertMessage(message.username, message.text)
 
   res.json({ success: true })
-  // setTimeout(() => {
-  //   res.redirect('/')
-  // }, (2000)) // animation ".animate-submit-exit" + 500 ms
 }
 
 module.exports = {

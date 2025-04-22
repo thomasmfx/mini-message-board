@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const path = require('node:path')
 const messagesRouter = require('./routes/messagesRouter')
+const env = require('./config/env')
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use((err, req, res, next) => {
   res.render('error', { error: err })
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Application running - Listening on http://localhost:${PORT}`)
 })
