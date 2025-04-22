@@ -91,7 +91,7 @@ body {
 button.message {
     cursor: pointer;
 }
-.message-user {
+.message-username {
     font-weight: 500;
 }
 .message-added-date {
