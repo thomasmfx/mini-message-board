@@ -21,7 +21,7 @@ const messagesListGet = async (req, res) => {
 
   res.render('index', {
     messages: messages,
-    dateFormatted: utils.displayDateFormatted
+    formatDate: utils.displayDateFormatted
   })
 }
 

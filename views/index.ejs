@@ -43,7 +43,7 @@
                         messageElement[i].style.transform = `scale(1.05) ${rotate}`;
                       })
                       messageElement[i].addEventListener('mouseout', () => {
-                        messageElement[i].style.transform = `scale(1) rotate(0deg`
+                        messageElement[i].style.transform = `scale(1) rotate(0deg)`
                       })
                     }
                 }
@@ -55,22 +55,24 @@
         <main class="main">
             <div class="grid">
                 <% messages.map((message) => { %>
-                    <form method='GET' action='/<%= message.id %>'>
-                        <button class="message" type="submit" data-id="<%= message.id %>">
-                            <div class="message-username">
+                <article>
+                    <a href="/<%= message.id %>" class="message" aria-label="View full message from <%= message.username %>">
+                        <header class="message-header">
+                            <strong class="message-username">
                                 <%= message.username %>
-                            </div>
-                            <div class="message-added-date">
-                                <%= dateFormatted(message.date) %>
-                            </div>
-                            <div class="message-text">
-                                <%= message.text %>
-                            </div>
-                            <div class="message-fold"></div>
-                            <div class="message-fold-cover"></div>
-                            <div class="message-fold-stripe"></div>
-                        </button>
-                    </form>
+                            </strong>
+                            <time class="message-added-date">
+                                <%= formatDate(message.date) %>
+                            </time>
+                        </header>
+                        <p class="message-text">
+                            <%= message.text %>
+                        </p>
+                        <div class="message-fold"></div>
+                        <div class="message-fold-cover"></div>
+                        <div class="message-fold-stripe"></div>
+                    </a>
+                </article>
                 <% }) %>
             </div>
         </main>

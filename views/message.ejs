@@ -10,20 +10,22 @@
         <%- include('partials/header', { navigateTo: '/', btnText: 'messages' }) %>
         <main class="main">
             <div class="grid">
-                <div class="message selected">
-                    <div class="message-username">
-                        <%= message.username %>
-                    </div>
-                    <div class="message-added-date">
-                        <%= message.date.toLocaleString() %>
-                    </div>
-                    <div class="message-text">
+                <article class="message">
+                    <header class="message-header">
+                        <strong class="message-username">
+                            <%= message.username %>
+                        </strong>
+                        <time class="message-added-date">
+                            <%= message.date.toLocaleString() %>
+                        </time>
+                    </header>
+                    <p class="message-text">
                         <%= message.text %>
-                    </div>
+                    </p>
                     <div class="message-fold"></div>
                     <div class="message-fold-cover"></div>
                     <div class="message-fold-stripe"></div>
-                </div>
+                </article>
             </div>
         </main>
     </body>
