@@ -1,7 +1,6 @@
 #! /usr/bin/env node
 
 const { Client } = require('pg')
-const env = require('../config/env')
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
