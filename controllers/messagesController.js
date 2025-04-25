@@ -1,4 +1,4 @@
-const db = require('../db/queries')
+const messageModel = require('../models/messageModel')
 const utils = require('../utils/date')
 const { body, validationResult } = require('express-validator')
 
@@ -17,7 +17,7 @@ const validateResult = [
 ]
 
 const messagesListGet = async (req, res) => {
-  const messages = await db.getAllMessages()
+  const messages = await messageModel.getAllMessages()
 
   res.render('index', {
     messages: messages,
@@ -27,7 +27,7 @@ const messagesListGet = async (req, res) => {
 
 const messagesGet = async (req, res, next) => {
   const { messageId } = req.params;
-  const message = await db.getMessageById(messageId)
+  const message = await messageModel.getMessageById(messageId)
 
   if (!message) {
     const error = new Error();
@@ -61,7 +61,7 @@ const messagesNewPost = [
       text: req.body.messageText
     }
 
-    await db.insertMessage(message.username, message.text)
+    await messageModel.insertMessage(message.username, message.text)
 
     setTimeout(() => {
       res.redirect('/')
