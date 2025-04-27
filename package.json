@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "dev": "node --watch ."
+    "dev": "node --watch .",
+    "seed": "node db/populatedb.js"
   },
   "author": "thomasmfx",
   "license": "ISC",
