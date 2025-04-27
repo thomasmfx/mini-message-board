@@ -1,6 +1,9 @@
 #! /usr/bin/env node
 
 const { Client } = require('pg')
+const env = require('../config/env');
+
+const connectionString = env.DATABASE_URL;
 
 const SQL = `
 CREATE TABLE IF NOT EXISTS messages (
@@ -23,16 +26,12 @@ INSERT INTO messages (username, text, date) VALUES
   ('System', 'This is a test message.', CURRENT_TIMESTAMP);
 `
 
-async function main(dbUrl) {
-  if (!dbUrl) {
-    throw new Error('Database URL not provided. Use: node db/populatedb.js <db-url>');
-  }
-
+async function main() {
   console.log('Connecting to database...');
+  
   const client = new Client({
-    connectionString: dbUrl,
-    ssl: dbUrl.includes('railway') ? { rejectUnauthorized: false } : false
-  })
+    connectionString
+  });
 
   try {
     await client.connect()
@@ -47,5 +46,4 @@ async function main(dbUrl) {
   }
 }
 
-const dbUrl = process.argv[2];
-main(dbUrl).catch(console.error);
+main().catch(console.error);
