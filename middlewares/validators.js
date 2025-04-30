@@ -8,10 +8,10 @@ const lengthError = (min, max) =>
 
 const validateResult = [
   body('username').trim()
-    .isLength({ min: 1, max: 25 }).withMessage(`username ${lengthError(3, 25)}`)
+    .isLength({ min: 3, max: 15 }).withMessage(`username ${lengthError(3, 15)}`)
     .isAlphanumeric().withMessage(`username ${alphaError}`),
   body('messageText').trim()
-    .isLength({ min: 1, max: 150 }).withMessage(`message ${lengthError(1, 150)}`),
+    .isLength({ min: 3, max: 115 }).withMessage(`message ${lengthError(1, 115)}`),
 ]
 
 module.exports = validateResult

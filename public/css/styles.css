@@ -119,6 +119,7 @@ a.message {
 }
 .message-username {
     font-weight: 500;
+    word-break: break-word
 }
 .message-added-date {
     font-size: .8rem;
@@ -127,6 +128,7 @@ a.message {
 .message-text {
     margin-top: 1em;
     text-align: start;
+    word-break: break-word
 }
 .message-fold {
     position: absolute;
